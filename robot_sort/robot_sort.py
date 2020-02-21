@@ -108,9 +108,9 @@ class SortingRobot:
         # I will then compare the item in my hands to the item in the list.
         # If there is no item there, I will move right. There should always be an item in my hands, if there is not, I will turn off the light.
         # If the item in the list is smaller than the item in my hands, I shall swap them.
-            # I will then move to the left.
+            # I will then move to the right
         # If the item in the list is greater than the item in my hands, I shall skip that item in the list.
-            # I will then move to the right.
+            # I will then move to the left
         # If the item in my hands is something and the item in the list is nothing, I will put the item there.
             # This means there will always be a list item with the value of None.
             # The last item sorted will be the smallest item in the list.
@@ -120,23 +120,67 @@ class SortingRobot:
             # i.e. if the item I have is greater than the item next to it (the one in front of me), I swap those items
             # if that item is not greater, I continue on. 
         # My light goes off when there is nothing to sort. I will pass through this array until each item is sorted!
-        self.set_light_on()
-        print(self.light_is_on())
+        # while self.light_is_on() is True:
+        #     print(self._item)
+        #     if self.can_move_left is True:
+        #         self.move_left()
+        #     elif self.can_move_right is True and self.can_move_left is False:
+        #         if self.compare_item() is None:
+        #             self.move_right()
+        #             if self.compare_item() is 1:
+        #                 self.swap_item()
+        #                 self.move_right()
+        #             elif self.compare_item is -1:
+        #                 self.move_right
+        #     elif self.can_move_right is False and self.compare_item() is None:
+        #         self.set_light_off()
         self.swap_item()
-        print(self.compare_item)
+            # This swaps the first item in our list
+        self.move_right()
+            # This moves us to the next item in our list, as the first is none.
+        self.set_light_on()
+            # This initializes our while loop
         while self.light_is_on() is True:
-            print(self._item)
             if self.can_move_left is True:
-                self.move_left()
-            elif self.can_move_right is True and self.can_move_left is False:
-                if self.compare_item() is None:
+                print('hit!')
+                self.move_right()
+                print('current item', self._item)
+                print('current position', self._position)
+                print('current item in position', self._list[self._position])
+                if self.compare_item() == 1:
+                    print('item is greater than')
                     self.move_right()
-                    if self.compare_item() is 1:
-                        self.swap_item()
-                    elif self.compare_item is -1:
-                        self.move_right
-            elif self.can_move_right is False and self.compare_item() is None:
-                self.set_light_off()
+                elif self.compare_item() == -1:
+                    print('item is less than')
+                    self.swap_item()
+                    self.move_left()
+                    continue
+                elif self.compare_item is None:
+                    self.swap_item()
+                    self.set_light_off()
+                else: 
+                    break
+            else:
+                print('hit!')
+                print('current item', self._item)
+                print('current position', self._position)
+                print('current item in position', self._list[self._position]) 
+                if self.compare_item() == 1:
+                    print('item is greater than')
+                    self.move_right()
+                elif self.compare_item() == -1:
+                    print('item is less than')
+                    self.swap_item()
+                    self.move_left()
+                elif self.compare_item is None:
+                    self.swap_item()
+                    self.set_light_off()
+                else: 
+                    break
+
+
+            
+
 
 a = [1, 3, 5, 7, 9]
 SortingRobot(1)
