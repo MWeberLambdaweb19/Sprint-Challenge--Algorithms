@@ -25,4 +25,42 @@ O(1) [the if statement] + O(n) [the return outside of the if statement] == O(n).
 
 ## Exercise II
 
+There are two ways to do this, through linear and binary search. 
+
+Linear!
+I have an `n` story building, the building is called Wayside. I am dropping eggs off of floor `f`, and if the egg _does_ break, I would go _down_ a floor to check that next floor to see if the egg breaks, and I would do that until eggs stop breaking.
+
+So, for every floor `f`, starting at the top floor, in the range of the length of `n`,  I would drop an egg until that egg breaks is `false`, starting at the highest floor.
+
+This would look like
+```
+def eggs(n, f)
+for f in range(-1, len(n) -1):
+    if f is True:
+        f -= 1
+        eggs(n, f)
+    else:
+        return f
+```
+This runtime is factorial, which is O(n!), which is _very_ slow.
+
+Binary!
+
+With the same variables, instead of starting at the top floor, I would start in the middle of the building. When dropped, if the egg broke, I would cancel out the entire upper half of the building and would search for a new middle in the center of our current middle. I would repeat that until the egg did not break, and then I would cancel out lower half of that middle, and then I would search the upper half of that middle.
+
+This can be confusing in words, so here's a visual example:
+```
+def eggs_binary(n, f)
+    f = len(n) // 2 # I am using f instead of middle ## BIG O is O(1)
+    cracked = False ## Skip for Big O
+    while cracked is True:
+        if n[f] == True:
+            f == (len(n[f-1:]))
+            eggs_binary(n, f)
+        else: 
+            f == (len(n[:f+1]))
+            eggs_binary(n, f)
+```
+
+This is log(n), as we are shortening the length of `n` through the variable `f` in half.
 
