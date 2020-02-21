@@ -1,5 +1,5 @@
 # Analysis of Algorithms
-fgfgfg
+
 ## Exercise I
 
 Give an analysis of the running time of each snippet of
