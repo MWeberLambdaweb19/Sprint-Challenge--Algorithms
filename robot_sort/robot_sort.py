@@ -96,9 +96,50 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+        ## INITIALIZATION 
+        # As a robot, I can go through a set of books (n).
+        # My light is my memory, 1/True means that the list is not sorted. If that light is on, I know I have something to swap.
+            # Conversely, 0/False means the light goes off, the list is sorted, and I can stop!
+            # If there is no item in my hands, this means the light goes off!
+        # The first thing I will have to do is pick up an item. The item is now in my hands, and in the list, it is None.
 
+        ## COMPARISION AND SWAPPING
+        # I may need a helper method to print the results of the comparison!
+        # I will then compare the item in my hands to the item in the list.
+        # If there is no item there, I will move right. There should always be an item in my hands, if there is not, I will turn off the light.
+        # If the item in the list is smaller than the item in my hands, I shall swap them.
+            # I will then move to the left.
+        # If the item in the list is greater than the item in my hands, I shall skip that item in the list.
+            # I will then move to the right.
+        # If the item in my hands is something and the item in the list is nothing, I will put the item there.
+            # This means there will always be a list item with the value of None.
+            # The last item sorted will be the smallest item in the list.
+        
+        ## EXPLANATION
+        # I am swapping/sorting items through the bubble sort method, 
+            # i.e. if the item I have is greater than the item next to it (the one in front of me), I swap those items
+            # if that item is not greater, I continue on. 
+        # My light goes off when there is nothing to sort. I will pass through this array until each item is sorted!
+        self.set_light_on()
+        print(self.light_is_on())
+        self.swap_item()
+        print(self.compare_item)
+        while self.light_is_on() is True:
+            print(self._item)
+            if self.can_move_left is True:
+                self.move_left()
+            elif self.can_move_right is True and self.can_move_left is False:
+                if self.compare_item() is None:
+                    self.move_right()
+                    if self.compare_item() is 1:
+                        self.swap_item()
+                    elif self.compare_item is -1:
+                        self.move_right
+            elif self.can_move_right is False and self.compare_item() is None:
+                self.set_light_off()
+
+a = [1, 3, 5, 7, 9]
+SortingRobot(1)
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
