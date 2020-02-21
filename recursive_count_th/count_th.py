@@ -15,11 +15,11 @@ def count_th(word):
             count += 1
             a += 1
             word = word[a:]
-            return count_th(word)
+            count += count_th(word)
         else:
             a += 1
             word = word[a:]
-            return count_th(word)
+            count += count_th(word)
     # elif word[a] + word[a+1] == 'th':
     #     print('HIT TRUE')
     #     count += 1
